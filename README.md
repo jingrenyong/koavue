@@ -1,6 +1,6 @@
 # koavue
 
-> A Vue.js 和 koa2 的 项目，希望你能微笑面对它
+> A Vue.js 和 koa2 的 项目，希望能和大家一起学习
 
 ## Build Setup
 
@@ -29,5 +29,3 @@ Vue+Vuex+Router+Vant+Node+Koa2+Mongoose+MongoDB
 
 因为还是在奋斗的挨踢屌丝,所以项目不能很快做完，只能抽时间进行维护和更新，<br>
 希望和小伙伴们一起学习，不被大浪淘汰
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
