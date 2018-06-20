@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^2.0.1",
     "glob": "^7.1.2",
+    "koa2-cors": "^2.0.5",
     "vant": "^1.1.7",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.3",
