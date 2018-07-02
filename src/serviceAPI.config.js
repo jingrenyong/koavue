@@ -3,6 +3,7 @@ const LOCALURL = 'http://localhost:3000'
 const URL = {
     getShoppingMallInfo:BASEURL+'index',
     getGoodsInfo:BASEURL+'getGoodsInfo',
+    getDetailGoodsInfo:LOCALURL+'goods/getDetailGoodsInfo',
     registerUser:LOCALURL + 'user/register'
 }
  

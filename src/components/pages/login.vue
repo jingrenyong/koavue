@@ -40,24 +40,27 @@ export default {
     return {
       username: "",
       password: "",
-      openLoading: false ,//是否开启用户注册的Loading状态,防止用户重复提交
-      usernameErrorMsg:'',
-      passwordErrorMsg:'',
+      openLoading: false //是否开启用户注册的Loading状态,防止用户重复提交
     };
+  },
+  created(){
+    if (localStorage.get('userIngo')){
+
+    }
   },
   methods: {
     goBack() {
       this.$router.go(-1);
     },
-   
-    loginAction(){
-      if (this.checkForm){
-        this.axiosloginUser()
+
+    loginAction() {
+      if (this.checkForm) {
+        this.axiosloginUser();
       }
     },
     axiosloginUser() {
       axios({
-        url: "http://localhost:3000/user/register",
+        url: "http://localhost:3000/user/login",
         method: "post",
         data: {
           userName: this.username,
@@ -66,15 +69,30 @@ export default {
       })
         .then(res => {
           console.log(res);
-          if (res.data.code==200){
-          
-          }else{
-          
+          if (res.data.code == 200 && res.data.message) {
+            //保存用户登录状态
+            new Promise((resolve, reject) => {
+              let users = { userName: this.username };
+              localStorage.setItem("userInfo", users);
+              setTimeout(() => {
+                resolve();
+              }, 500);
+            })
+              .then(() => {
+                Toast.success("登录成功");
+                this.$router.push("/");
+              })
+              .catch(err => {
+                Toast.fail("登录状态保存失败");
+                console.log(err,'登录状态错误')
+              });
+          } else {
+            Toast.fail("登录失败");
+            this.openLoading = false;
           }
         })
         .catch(error => {
           console.log(error);
-         
         });
     }
   }

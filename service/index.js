@@ -8,13 +8,15 @@ const { connect, initSchemas } = require('./database/init.js')
 const mongoose = require('mongoose')
 
 let user = require("./appApi/User.js")
+let goods = require("./appApi/Goods.js")
 
 app.use(bodyParser())
 app.use(cors()) 
 
-// 装载所有路由
+// 装载所有路由(进行路由的相关配置)
 let router = new Router()
 router.use('/user',user.routes())
+router.use('/goods',goods.routes())
 // 加载路由中间件
 app.use(router.routes())
 app.use(router.allowedMethods())
