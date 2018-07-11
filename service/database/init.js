@@ -9,7 +9,6 @@ exports.initSchemas = () => {
   //使用了glob.sync同步引入所有的schema文件，然后用forEach的方法require（引入）进来。这比你一条条引入要优雅的多
   glob.sync(resolve(__dirname,'./schema/','**/*.js')).forEach(require)
 }
-
 exports.connect = () => {
   //连接数据库
   mongoose.connect(db)
