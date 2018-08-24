@@ -14,7 +14,7 @@
     <div class="goods-name">{{goodsInfo.NAME}}</div>
     <div class="goods-price">价格：{{goodsInfo.PRESENT_PRICE | moneyFilter }}</div>
     <div>
-        <van-tabs >
+        <van-tabs swipeable sticky>
         <van-tab title="商品详情">
           <div class="detail" v-html="goodsInfo.DETAIL">
              
@@ -55,7 +55,7 @@ export default {
 },
  
   created() {
-    this.goodsId = this.$router.query.goodsId;
+    this.goodsId = this.$router.query.goodsId; //接受页面传过来的goodsId
     console.log(this.goodsId + "goodsid");
     this.getInfo();
   },

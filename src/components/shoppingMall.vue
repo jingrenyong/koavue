@@ -21,7 +21,7 @@
     </div>
     <!-- tab bar -->
     <div class="type-bar">
-      <div v-for="(cate , index) of category" :key="index">
+      <div class="type-item" v-for="(cate , index) of category" :key="index">
         <img v-lazy="cate.image" width="90%" >
         <span>{{cate.mallCategoryName}}</span>
       </div>
@@ -167,7 +167,9 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
-
+.type-item{
+      flex:1;
+  }
 .recommend-area {
   background: #fff;
   margin-top: 0.3rem;

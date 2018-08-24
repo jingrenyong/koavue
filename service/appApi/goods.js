@@ -44,7 +44,7 @@ router.get('/insertAllCategorySub', async (ctx) => {
   })
   ctx.body = "开始导入数据"
 })
-// 获取大类信息（均测试是否正常读取数据库信息和返回结果是够正确‘’）
+// 获取大类信息（均测试，是否正常读取数据库信息和返回结果是够正确‘’）
 router.get('/getCategoryList',async(ctx)=>{
   try{
       const Category = mongoose.model('Category')
@@ -54,7 +54,7 @@ router.get('/getCategoryList',async(ctx)=>{
   }catch(err){
       ctx.body={code:500,message:err}
   }
-
+ 
 })
 // 之前 漏掉的
 router.get('/insertAllCategory',async(ctx)=>{
@@ -79,10 +79,10 @@ router.get('/insertAllCategory',async(ctx)=>{
 
 })
 // 分类下的子类信息
-router.get('/getCategorySubList',async(ctx)=>{
+router.post('/getCategorySubList',async(ctx)=>{
   try{
-      //let categoryId = ctx.request.body.categoryId
-      let categoryId = 1
+      let categoryId = ctx.request.body.categoryId
+      // let categoryId = 1
       const CategorySub = mongoose.model('categorySub')
       let result = await CategorySub.find({MALL_CATEGORY_ID:categoryId}).exec()
       ctx.body={code:200,message:result}
@@ -92,12 +92,16 @@ router.get('/getCategorySubList',async(ctx)=>{
 
 })
 // 根据商品类别获取商品列表
-router.get('/getGoodsListByCategorySubID',async(ctx)=>{
+router.post('/getGoodsListByCategorySubID',async(ctx)=>{
   try{
-      //let categorySubId = ctx.request.body.categoryId
-      let categorySubId = '2c9f6c946016ea9b016016f79c8e0000'
+      let categorySubId = ctx.request.body.categoryId
+      let pageNum = ctx.request.body.page //页数
+      let num = 10 //每页展示的条数
+      let start = (pageNum-1)*num
+      // let categorySubId = '2c9f6c946016ea9b016016f79c8e0000'
       const Goods = mongoose.model('Goods')
-      let result = await Goods.find({SUB_ID:categorySubId}).exec()
+      let result = await Goods.find({SUB_ID:categorySubId})
+      .skip(start).limit(num).exec()
       ctx.body={code:200,message:result}
   }catch(err){
       ctx.body={code:500,message:err}
